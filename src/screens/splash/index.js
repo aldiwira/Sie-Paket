@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, StatusBar} from 'react-native';
 import {Root, Content, Text, Container} from 'native-base';
-import colors from '../../config/colors';
+import Colors from '../../config/Colors';
 
 const index = ({navigation, route}) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('home');
-    }, 1000);
+    }, route.params.time);
   });
   return (
     <Root>
-      <Container style={{backgroundColor: colors.colorBlueNTSC}}>
+      <Container style={{backgroundColor: Colors.colorBlueNTSC}}>
         <Content contentContainerStyle={{flex: 1}} style={{flex: 1}}>
-          <StatusBar backgroundColor={colors.colorBlueNTSC} />
+          <StatusBar backgroundColor={Colors.colorBlueNTSC} />
           <View style={styles.wrapper}>
             <Text style={styles.textMain}>Sie Paket</Text>
             <Text style={styles.textSec}>Cek resi berbagai kurir</Text>
@@ -33,12 +33,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textMain: {
-    color: colors.colorWhiteFlat,
+    color: Colors.colorWhiteFlat,
     fontSize: 50,
     fontWeight: 'bold',
   },
   textSec: {
-    color: colors.colorWhiteFlat,
+    color: Colors.colorWhiteFlat,
     fontSize: 16,
     fontStyle: 'italic',
   },

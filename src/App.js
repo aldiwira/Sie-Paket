@@ -10,13 +10,20 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setisFirst(false);
-    }, 1000);
+    }, initTime);
   });
+  const initTime = 2000;
   const [isFirst, setisFirst] = useState(true);
   return (
     <NavigationContainer>
       <stack.Navigator screenOptions={{headerShown: false}}>
-        {isFirst ? <stack.Screen name="splash" component={Splash} /> : null}
+        {isFirst ? (
+          <stack.Screen
+            name="splash"
+            initialParams={{time: initTime}}
+            component={Splash}
+          />
+        ) : null}
         <stack.Screen name="home" component={Home} />
       </stack.Navigator>
     </NavigationContainer>
