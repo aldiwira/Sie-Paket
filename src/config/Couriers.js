@@ -3,35 +3,35 @@
 
 const couriers = [
   {
-    name: 'JNE',
+    name: 'JNE (fix)',
     value: 'jne',
   },
   {
-    name: 'Pos Indonesia',
+    name: 'Pos Indonesia (testing)',
     value: 'pos',
   },
   {
-    name: 'JNT',
+    name: 'JNT (bugs)',
     value: 'jnt',
   },
   {
-    name: 'Si Cepat',
+    name: 'Si Cepat (Testing)',
     value: 'sicepat',
   },
   {
-    name: 'Anter Aja',
+    name: 'Anter Aja (Testing)',
     value: 'anteraja',
   },
   {
-    name: 'Wahana',
+    name: 'Wahana (Testing)',
     value: 'wahana',
   },
   {
-    name: 'Ninja',
+    name: 'Ninja (Testing)',
     value: 'ninja',
   },
   {
-    name: 'Lion',
+    name: 'Lion (Testing)',
     value: 'lion',
   },
 ];

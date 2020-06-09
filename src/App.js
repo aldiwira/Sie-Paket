@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import Splash from './screens/splash';
 import Home from './screens/home';
+import Result from './screens/result';
 
 const stack = createStackNavigator();
 
@@ -28,6 +29,11 @@ const App = () => {
           name="home"
           initialParams={{screenTitle: 'Home'}}
           component={Home}
+        />
+        <stack.Screen
+          name="result"
+          initialParams={{screenTitle: 'Result'}}
+          component={Result}
         />
       </stack.Navigator>
     </NavigationContainer>

@@ -14,21 +14,48 @@ import {
   Input,
   Picker,
   Button,
+  Toast,
 } from 'native-base';
 import Colors from '../../config/Colors';
 import Courier from '../../config/Couriers';
-import {ceil} from 'react-native-reanimated';
+import Axios from 'axios';
+import Api from '../../config/Api';
 
 const index = ({navigation, route}) => {
+  useEffect(() => {});
   const [NoResi, setNoResi] = useState(null);
   const [Kurir, setKurir] = useState(null);
+  const [isLoading, setisLoading] = useState(false);
+  const [Response, setResponse] = useState(null);
 
   const onKurirChange = value => {
     setKurir(value);
   };
-  const sendFetch = () => {
-    // navigation.navigate('result', {datas: {NoResi: NoResi, Kurir: Kurir}});
-    console.log('On Going');
+  const sendFetch = async () => {
+    await setResponse(null);
+    await setisLoading(true);
+    await Axios.get(Api.uri, {
+      params: {
+        awb: NoResi,
+        api_key: Api.key,
+        courier: Kurir,
+      },
+    })
+      .then(async res => {
+        if (res.data.result) {
+          setisLoading(false);
+          await navigation.navigate('result', {datas: res});
+        } else {
+          setisLoading(false);
+          await Toast.show({
+            text: res.data.message,
+          });
+        }
+      })
+      .catch(err => {
+        setisLoading(false);
+        setResponse(err);
+      });
   };
   return (
     <Root>
@@ -60,6 +87,7 @@ const index = ({navigation, route}) => {
             <Item rounded style={styles.input}>
               <Input
                 placeholder="No Resi"
+                value={NoResi}
                 onChangeText={text => setNoResi(text)}
               />
             </Item>
@@ -83,10 +111,11 @@ const index = ({navigation, route}) => {
             <Button
               full
               success
+              disabled={isLoading ? true : false}
               rounded={true}
               style={styles.button}
               onPress={sendFetch.bind(this)}>
-              <Text>Submit</Text>
+              <Text>{isLoading ? 'Loading' : 'Submit'}</Text>
             </Button>
           </Form>
         </Content>
